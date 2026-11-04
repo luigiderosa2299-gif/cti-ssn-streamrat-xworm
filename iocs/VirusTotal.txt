@@ -1,0 +1,18 @@
+52c18aa6496d3e522aa274924c4919c556cf174054e2da7f7777e4e888011f9d  no risultati
+bd183756b5512f7caf908c3fc1ecaad93ef2db7af24a74713c3abcdceea18900 52/71 Trojan:MSIL/XWorm.c1879efe, Trojan.MSIL.Basic.8.Gen , W32.Malware.9453E5DF , trojan.msil/basic
+32beb0ba7e5050f3b78e06b71de10a4a149196bdbbca65be6d5030002fab7a7e no risultati
+6a297ef7357b07886ad14cab61b88222c95616420c0d36cef3746511f346fb92 no risultati
+f4115181a5ee8192dd6d5a180e7b5979fe262a76c48dcc4f6dc889c296322d59 no risultati  
+af46824055a717ff316302dce903db2a11f51dda04c4792b9edc53ed9daee0ad 5/61 trojan.base64/bhgd , Trojan.Packed2.43192 , Trojan.Base64.Reverser
+6215f00baa4bf18bab5792fc796bfc5555917240f14f7c7e672d956888d75c96  no risultati
+492682f877607ee99df2ddd2bd5953fd727bdf6e19d397de9dbbafd582bcad75  0/61 
+531349c5569593443346d7f143361b550fd5d38229f711624b8bfec0c09536a4  no risultati
+38b9dd49e45ea2a761517a2bbf01743c65663ee533de031c0cf7d26125502fe3  no risultati
+7b38338df3a51b13cc1ec0e7d4d6c9b1d1492cdb7e9b8cda1de7462cfd2257c2  25/61  trojan.alien/batagent  Trojan.Generic.40616728  Dropper.DR/SNH
+7175ec90d224c47132e7fb2dee114995d7bcf665bafa59a7a761a9be1f03ed8e  no risultati
+e38a08f7c8936c46453ddd8f06b0eddd56fc11967c09b4ecae6e78f1e2a41f3b  16/59 trojan.hqwar/abapplication TrojanDropper:Android/Hqwar.cec09aff
+c28f5f558213d986652296d5ce9d91e12cc5cd3108b8dfff36b0e763ff31b9c2 16/60 trojan.hqwar/abapplication , TrojanDropper:Android/Hqwar.85022f23 , Android.Riskware.Dropper.AKE , APK:CRepMalware [Trj]
+3daac6fab8a5de692c066a80d66ccde552a07408880d0ad1d369514015b4348e  no risultati
+ff72f3c0767a7bae48fcd9e343ec8d0242425bf212dc45e30c1338af8039286c  no risultati
+d3a7938d10a6cd114daa501a05d89f9db7bf6f396fa4d72def92bec08cd7bacb  15/67 trojan.apprisk/generisk , Android.Trojan.Banker.BCP , Trojan:Win32/Ravartar!rfn
+

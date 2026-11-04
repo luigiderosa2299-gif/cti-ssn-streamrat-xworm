@@ -1,0 +1,4 @@
+bd183756b5512f7caf908c3fc1ecaad93ef2db7af24a74713c3abcdceea18900 52/71 Trojan:MSIL/XWorm.c1879efe, Trojan.MSIL.Basic.8.Gen , W32.Malware.9453E5DF , trojan.msil/basic
+af46824055a717ff316302dce903db2a11f51dda04c4792b9edc53ed9daee0ad 5/61 trojan.base64/bhgd , Trojan.Packed2.43192 , Trojan.Base64.Reverser
+c28f5f558213d986652296d5ce9d91e12cc5cd3108b8dfff36b0e763ff31b9c2 16/60 trojan.hqwar/abapplication , TrojanDropper:Android/Hqwar.85022f23 , Android.Riskware.Dropper.AKE , APK:CRepMalware [Trj]
+
