@@ -1,7 +1,7 @@
 {
     "name": "CTI SSN - XWorm (Windows)",
     "versions": {
-        "attack": "17",
+        "attack": "20",
         "navigator": "5.1.0",
         "layer": "4.5"
     },
