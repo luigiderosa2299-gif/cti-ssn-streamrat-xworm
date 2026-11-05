@@ -30,7 +30,7 @@
             "color": "#0398fc",
             "comment": "Payload cifrato con XOR, decodificato da libreria nativa",
             "enabled": true,
-            "showSubtechniques": true
+            "showSubtechniques": false
         },
         {
             "techniqueID": "T1626",
@@ -38,23 +38,31 @@
             "color": "#0398fc",
             "comment": "Richiesta abilitazione servizi di Accessibilità",
             "enabled": true,
-            "showSubtechniques": true
+            "showSubtechniques": false
+        },
+        {
+            "techniqueID": "T1417",
+            "showSubtechniques": true,
+            "enabled": true
         },
         {
             "techniqueID": "T1417.002",
             "score": 1,
             "color": "#0398fc",
             "comment": "Overlay HTML per furto dati inseriti dall'utente",
-            "enabled": true,
-            "showSubtechniques": true
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1437",
+            "showSubtechniques": true,
+            "enabled": true
         },
         {
             "techniqueID": "T1437.001",
             "score": 1,
             "color": "#0398fc",
             "comment": "C2 via WebSocket su TLS",
-            "enabled": true,
-            "showSubtechniques": true
+            "enabled": true
         }
     ],
     "gradient": {

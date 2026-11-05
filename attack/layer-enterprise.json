@@ -17,36 +17,52 @@
     "hideDisabled": false,
     "techniques": [
         {
+            "techniqueID": "T1566",
+            "showSubtechniques": true,
+            "enabled": true
+        },
+        {
             "techniqueID": "T1566.002",
             "score": 1,
             "color": "#fc9803",
             "comment": "Sito consegna .bat alla vittima",
-            "enabled": true,
-            "showSubtechniques": true
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1027",
+            "showSubtechniques": true,
+            "enabled": true
         },
         {
             "techniqueID": "T1027.016",
             "score": 1,
             "color": "#fc9803",
             "comment": "BAT con sezioni di codice finte per confondere l'analisi",
-            "enabled": true,
-            "showSubtechniques": true
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1059",
+            "showSubtechniques": true,
+            "enabled": true
         },
         {
             "techniqueID": "T1059.001",
             "score": 1,
             "color": "#fc9803",
             "comment": "BAT avvia PowerShell con finestra nascosta",
-            "enabled": true,
-            "showSubtechniques": true
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1036",
+            "showSubtechniques": true,
+            "enabled": true
         },
         {
             "techniqueID": "T1036.008",
             "score": 1,
             "color": "#fc9803",
             "comment": "Payload Base64 nascosto in un file 2.jpg",
-            "enabled": true,
-            "showSubtechniques": true
+            "enabled": true
         },
         {
             "techniqueID": "T1620",
@@ -62,7 +78,7 @@
             "color": "#fc9803",
             "comment": "XWorm comunica con il server C2",
             "enabled": true,
-            "showSubtechniques": true
+            "showSubtechniques": false
         }
     ],
     "gradient": {
