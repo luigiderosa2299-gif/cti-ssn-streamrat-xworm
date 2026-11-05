@@ -7,9 +7,6 @@
     },
     "domain": "enterprise-attack",
     "description": "TTP della catena d'infezione Windows (XWorm) nella campagna del falso sito SSN - CERT-AGID 24/09/2026",
-    "filters": {
-        "platforms": ["Windows"]
-    },
     "sorting": 0,
     "layout": {
         "layout": "side",

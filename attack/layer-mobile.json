@@ -7,9 +7,6 @@
     },
     "domain": "mobile-attack",
     "description": "TTP della catena d'infezione Android (StreamRat) nella campagna del falso sito SSN - CERT-AGID 24/09/2026",
-    "filters": {
-        "platforms": ["Android"]
-    },
     "sorting": 0,
     "layout": {
         "layout": "side",
