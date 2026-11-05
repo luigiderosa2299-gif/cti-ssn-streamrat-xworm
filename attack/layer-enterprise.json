@@ -1,0 +1,79 @@
+{
+    "name": "CTI SSN - XWorm (Windows)",
+    "versions": {
+        "attack": "17",
+        "navigator": "5.1.0",
+        "layer": "4.5"
+    },
+    "domain": "enterprise-attack",
+    "description": "TTP della catena d'infezione Windows (XWorm) nella campagna del falso sito SSN - CERT-AGID 24/09/2026",
+    "filters": {
+        "platforms": ["Windows"]
+    },
+    "sorting": 0,
+    "layout": {
+        "layout": "side",
+        "aggregateFunction": "average",
+        "showID": true,
+        "showName": true
+    },
+    "hideDisabled": false,
+    "techniques": [
+        {
+            "techniqueID": "T1566.002",
+            "score": 1,
+            "color": "#fc9803",
+            "comment": "Sito consegna .bat alla vittima",
+            "enabled": true,
+            "showSubtechniques": true
+        },
+        {
+            "techniqueID": "T1027.016",
+            "score": 1,
+            "color": "#fc9803",
+            "comment": "BAT con sezioni di codice finte per confondere l'analisi",
+            "enabled": true,
+            "showSubtechniques": true
+        },
+        {
+            "techniqueID": "T1059.001",
+            "score": 1,
+            "color": "#fc9803",
+            "comment": "BAT avvia PowerShell con finestra nascosta",
+            "enabled": true,
+            "showSubtechniques": true
+        },
+        {
+            "techniqueID": "T1036.008",
+            "score": 1,
+            "color": "#fc9803",
+            "comment": "Payload Base64 nascosto in un file 2.jpg",
+            "enabled": true,
+            "showSubtechniques": true
+        },
+        {
+            "techniqueID": "T1620",
+            "score": 1,
+            "color": "#fc9803",
+            "comment": "Assembly .NET caricato in memoria via Assembly::Load()",
+            "enabled": true,
+            "showSubtechniques": false
+        },
+        {
+            "techniqueID": "T1071",
+            "score": 1,
+            "color": "#fc9803",
+            "comment": "XWorm comunica con il server C2",
+            "enabled": true,
+            "showSubtechniques": true
+        }
+    ],
+    "gradient": {
+        "colors": ["#ffffff", "#fc9803"],
+        "minValue": 0,
+        "maxValue": 1
+    },
+    "legendItems": [],
+    "metadata": [],
+    "links": []
+}

@@ -1,0 +1,71 @@
+{
+    "name": "CTI SSN - StreamRat (Android)",
+    "versions": {
+        "attack": "17",
+        "navigator": "5.1.0",
+        "layer": "4.5"
+    },
+    "domain": "mobile-attack",
+    "description": "TTP della catena d'infezione Android (StreamRat) nella campagna del falso sito SSN - CERT-AGID 24/09/2026",
+    "filters": {
+        "platforms": ["Android"]
+    },
+    "sorting": 0,
+    "layout": {
+        "layout": "side",
+        "aggregateFunction": "average",
+        "showID": true,
+        "showName": true
+    },
+    "hideDisabled": false,
+    "techniques": [
+        {
+            "techniqueID": "T1476",
+            "score": 1,
+            "color": "#0398fc",
+            "comment": "Sito propone download APK che si finge l'app SSN",
+            "enabled": true,
+            "showSubtechniques": false
+        },
+        {
+            "techniqueID": "T1406",
+            "score": 1,
+            "color": "#0398fc",
+            "comment": "Payload cifrato con XOR, decodificato da libreria nativa",
+            "enabled": true,
+            "showSubtechniques": true
+        },
+        {
+            "techniqueID": "T1626",
+            "score": 1,
+            "color": "#0398fc",
+            "comment": "Richiesta abilitazione servizi di Accessibilità",
+            "enabled": true,
+            "showSubtechniques": true
+        },
+        {
+            "techniqueID": "T1417.002",
+            "score": 1,
+            "color": "#0398fc",
+            "comment": "Overlay HTML per furto dati inseriti dall'utente",
+            "enabled": true,
+            "showSubtechniques": true
+        },
+        {
+            "techniqueID": "T1437.001",
+            "score": 1,
+            "color": "#0398fc",
+            "comment": "C2 via WebSocket su TLS",
+            "enabled": true,
+            "showSubtechniques": true
+        }
+    ],
+    "gradient": {
+        "colors": ["#ffffff", "#0398fc"],
+        "minValue": 0,
+        "maxValue": 1
+    },
+    "legendItems": [],
+    "metadata": [],
+    "links": []
+}
