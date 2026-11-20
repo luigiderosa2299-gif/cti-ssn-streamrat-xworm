@@ -1,64 +1,64 @@
-# Valutazione delle fonti — Admiralty Code
+# Source Evaluation — Admiralty Code
 
-Metodologia: ogni fonte viene valutata su due assi indipendenti — **affidabilità della fonte** (A-F) e **credibilità dell'informazione specifica citata** (1-6). Il codice è assegnato per singola affermazione citata, non per l'intero documento, perché una stessa fonte può contenere informazioni con livelli di certezza diversi.
+Methodology: each source is evaluated along two independent axes — **source reliability** (A-F) and **credibility of the specific information cited** (1-6). The code is assigned per individual claim cited, not for the whole document, because a single source can contain information with different levels of certainty.
 
-## Fonte primaria
+## Primary Source
 
-### CERT-AGID — "Falso sito del Servizio Sanitario Nazionale distribuisce StreamRat su Android e XWorm su Windows"
+### CERT-AGID — "Falso sito del Servizio Sanitario Nazionale distribuisce StreamRat su Android e XWorm su Windows" ("Fake Servizio Sanitario Nazionale website distributes StreamRat on Android and XWorm on Windows"; SSN = Italian National Health Service)
 - **URL**: https://cert-agid.gov.it/news/falso-sito-del-servizio-sanitario-nazionale-distribuisce-streamrat-su-android-e-xworm-su-windows/
-- **Data**: 24/09/2026
-- **Tipo**: CERT governativo italiano (AgID), analisi tecnica diretta (reverse engineering di APK e BAT)
+- **Date**: 24/09/2026
+- **Type**: Italian government CERT (AgID), direct technical analysis (reverse engineering of APK and BAT)
 
-| Affermazione citata | Codice Admiralty | Nota |
+| Claim cited | Admiralty Code | Note |
 |---|---|---|
-| Il falso sito distribuisce payload diversi in base allo User-Agent (APK su Android, BAT su Windows) | **A1** | Analisi tecnica diretta del CERT-AGID sul campione |
-| StreamRat abusa dei servizi di Accessibilità Android per controllo remoto, overlay HTML, screen capture | **A1** | Confermato da analisi diretta; corroborato indipendentemente da ThreatFabric |
-| Il nome "SSN" è solo un'esca, non prova che il bersaglio sia il settore sanitario | **A1** | Dichiarazione esplicita di cautela della fonte stessa — buona pratica di analisi onesta |
-| La catena Windows passa da BAT → PowerShell → loader .NET in memoria → XWorm | **A1** | Analisi diretta del campione, inclusi nomi di classe (`myprogram.Homees`, metodo `runss`) |
+| The fake site distributes different payloads based on the User-Agent (APK on Android, BAT on Windows) | **A1** | Direct technical analysis of the sample by CERT-AGID |
+| StreamRat abuses Android Accessibility services for remote control, HTML overlays, screen capture | **A1** | Confirmed by direct analysis; independently corroborated by ThreatFabric |
+| The "SSN" name is only a lure and does not prove that the healthcare sector is the target | **A1** | Explicit statement of caution by the source itself — good practice of honest analysis |
+| The Windows chain goes from BAT → PowerShell → in-memory .NET loader → XWorm | **A1** | Direct analysis of the sample, including class names (`myprogram.Homees`, metodo `runss`) |
 
-## Fonti secondarie di corroborazione e contesto
+## Secondary Sources for Corroboration and Context
 
 ### ThreatFabric — "Uncovering StreamRat: From Meta Ads to Full Device Takeover"
 - **URL**: https://www.threatfabric.com/blogs/from-meta-ads-to-full-device-takeover-uncovering-streamrat
-- **Data**: 02/09/2026
-- **Tipo**: Laboratorio di ricerca mobile threat intelligence — **scopritore e autore del nome "StreamRat"**
+- **Date**: 02/09/2026
+- **Type**: Mobile threat intelligence research lab — **discoverer and author of the name "StreamRat"**
 
-| Affermazione citata | Codice Admiralty | Nota |
+| Claim cited | Admiralty Code | Note |
 |---|---|---|
-| StreamRat abusa dei servizi di Accessibilità per VNC/HVNC, overlay, keylogging, screen-blocking | **A1** | Analisi diretta di prima mano, inclusi comandi del bot documentati uno per uno |
-| Campagna di distribuzione su Meta/TikTok verso utenti spagnoli (tema streaming TV, ~570.000 impression) | **A1** | Fatto diretto osservato da ThreatFabric — **ma riguarda una campagna diversa da quella SSN italiana**, non applicabile come prova della campagna CERT-AGID |
-| StreamRat è distribuito come MaaS (Malware-as-a-Service) dallo stesso attore dietro GodFather e Mirax | **A2** | Inferenza dell'analista basata su somiglianze di codice del control panel — probabilmente vera, non confermata da fonte terza indipendente |
+| StreamRat abuses Accessibility services for VNC/HVNC, overlays, keylogging, screen-blocking | **A1** | First-hand direct analysis, including bot commands documented one by one |
+| Distribution campaign on Meta/TikTok targeting Spanish users (TV streaming theme, ~570,000 impressions) | **A1** | Fact directly observed by ThreatFabric — **but it concerns a different campaign from the Italian SSN one**, not applicable as evidence for the CERT-AGID campaign |
+| StreamRat is distributed as MaaS (Malware-as-a-Service) by the same actor behind GodFather and Mirax | **A2** | Analyst inference based on control panel code similarities — probably true, not confirmed by an independent third-party source |
 
 ### Fortinet FortiGuard Labs — "Deep Dive into New XWorm Campaign Utilizing Multiple-Themed Phishing Emails"
 - **URL**: https://www.fortinet.com/it/blog/threat-research/deep-dive-into-new-xworm-campaign-utilizing-multiple-themed-phishing-emails
-- **Data**: 10/02/2026
-- **Tipo**: Vendor di sicurezza primario, laboratorio di ricerca minacce proprio
+- **Date**: 10/02/2026
+- **Type**: Primary security vendor, in-house threat research lab
 
-| Affermazione citata | Codice Admiralty | Nota |
+| Claim cited | Admiralty Code | Note |
 |---|---|---|
-| XWorm è un RAT commodity attivo dal 2022, distribuito anche via marketplace Telegram, usato da più gruppi distinti | **A1** | Fatto diretto confermato dal proprio laboratorio — utile come contesto generale su XWorm |
-| Questa specifica campagna (allegato Excel + CVE-2018-0802) è la stessa osservata da CERT-AGID in Italia | — | **Non applicabile**: vettore di infezione completamente diverso (email/Excel vs sito web/BAT) — non va citata come prova della campagna SSN |
+| XWorm is a commodity RAT active since 2022, also distributed via Telegram marketplaces, used by multiple distinct groups | **A1** | Fact directly confirmed by its own lab — useful as general context on XWorm |
+| This specific campaign (Excel attachment + CVE-2018-0802) is the same one observed by CERT-AGID in Italy | — | **Not applicable**: completely different infection vector (email/Excel vs website/BAT) — must not be cited as evidence for the SSN campaign |
 
 ### 2-spyware.com — "XWorm RAT: what it is..."
 - **URL**: https://www.2-spyware.com/remove-xworm-rat.html
-- **Data**: fatti verificati 25/10/2026
-- **Tipo**: Sito di rimozione malware orientato ai consumatori, aggregatore di fonti vendor (Trellix, Gurucul, The Hacker News, Logpoint)
+- **Date**: facts verified 25/10/2026
+- **Type**: Consumer-oriented malware removal site, aggregator of vendor sources (Trellix, Gurucul, The Hacker News, Logpoint)
 
-| Affermazione citata | Codice Admiralty | Nota |
+| Claim cited | Admiralty Code | Note |
 |---|---|---|
-| XWorm usa bypass AMSI via script e process hollowing in RegSvcs.exe per nascondersi | **B1** | Non è analisi propria, ma riporta correttamente (citando le fonti) analisi di Trellix; corroborato da più vendor citati nello stesso articolo |
-| XWorm è distribuito anche tramite builder trojanizzati condivisi su GitHub/Telegram/YouTube | **B2** | Riportato citando The Hacker News, buona trasparenza sulla fonte originale ma informazione di seconda mano |
+| XWorm uses AMSI bypass via script and process hollowing in RegSvcs.exe to hide | **B1** | Not original analysis, but correctly reports (citing sources) Trellix analysis; corroborated by multiple vendors cited in the same article |
+| XWorm is also distributed via trojanized builders shared on GitHub/Telegram/YouTube | **B2** | Reported citing The Hacker News; good transparency about the original source but second-hand information |
 
-### Matricedigitale.it — "Falso sito SSN infetta Android e Windows: StreamRAT e XWorm in Italia"
+### Matricedigitale.it — "Falso sito SSN infetta Android e Windows: StreamRAT e XWorm in Italia" ("Fake SSN site infects Android and Windows: StreamRAT and XWorm in Italy")
 - **URL**: https://www.matricedigitale.it/2026/09/24/falso-sito-ssn-streamrat-android-xworm-windows/
-- **Data**: 24/09/2026 (stesso giorno del report CERT-AGID)
-- **Tipo**: Testata giornalistica tech/sicurezza italiana, riporta senza analisi tecnica propria
+- **Date**: 24/09/2026 (same day as the CERT-AGID report)
+- **Type**: Italian tech/security news outlet, reports without original technical analysis
 
-| Affermazione citata | Codice Admiralty | Nota |
+| Claim cited | Admiralty Code | Note |
 |---|---|---|
-| StreamRAT su Android, XWorm su Windows, distribuzione differenziata dallo stesso falso sito SSN | **C1** | Coincide esattamente con la fonte primaria CERT-AGID — credibilità massima perché corroborata, affidabilità della fonte più bassa perché non è analisi tecnica originale |
-| La campagna si inserisce in un trend di esche a tema sanità/servizi pubblici in Italia nel 2026 (rimborso Fascicolo Sanitario Elettronico, bonus vacanze Agenzia Entrate) | **C2** | Osservazione di contesto plausibile del giornalista, non verificata con dati aggregati propri |
+| StreamRAT on Android, XWorm on Windows, differentiated distribution from the same fake SSN site | **C1** | Matches the CERT-AGID primary source exactly — maximum credibility because corroborated, lower source reliability because it is not original technical analysis |
+| The campaign fits a trend of healthcare/public-services lures in Italy in 2026 (Fascicolo Sanitario Elettronico [Electronic Health Record] refund, Agenzia Entrate [Italian Revenue Agency] holiday bonus) | **C2** | Plausible contextual observation by the journalist, not verified with own aggregate data |
 
-## Sintesi
+## Summary
 
-5 fonti valutate, 1 primaria (CERT-AGID) e 4 secondarie di corroborazione/contesto. Le affermazioni tecniche centrali della campagna (distribuzione differenziata per piattaforma, capacità di StreamRat, catena d'infezione XWorm) raggiungono **A1** grazie a corroborazione indipendente tra CERT-AGID e ThreatFabric. Le fonti Fortinet e matricedigitale sono usate esclusivamente per contesto più ampio (XWorm come malware commodity, trend di campagne italiane a tema pubblico), non come prova diretta di dettagli specifici della campagna SSN.
+5 sources evaluated: 1 primary (CERT-AGID) and 4 secondary for corroboration/context. The central technical claims of the campaign (platform-differentiated distribution, StreamRat capabilities, XWorm infection chain) reach **A1** thanks to independent corroboration between CERT-AGID and ThreatFabric. The Fortinet and matricedigitale sources are used exclusively for broader context (XWorm as commodity malware, trend of Italian public-themed campaigns), not as direct evidence of specific details of the SSN campaign.

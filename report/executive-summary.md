@@ -1,16 +1,21 @@
-REPORT FINALE 
+FINAL REPORT
 
-1) Cosa è successo
-una campagna malevola ha sfruttato un falso sito del Servizio Sanitario Nazionale per distribuire malware diverso a seconda del dispositivo (StreamRat su Android, XWorm su Windows)
+1) What happened
 
-2) Perchè è rilevante
- l'infrastruttura non è dedicata all'Italia, è riutilizzata contro più paesi (come si può vedere dai domini registrati nei certificati digitali DV es: domini spagnoli ed inglesi) — quindi non è un evento isolato, è un pattern ricorrente
+A malicious campaign used a fake Servizio Sanitario Nazionale (SSN, Italian National Health Service) website to distribute different malware depending on the device (StreamRat on Android, XWorm on Windows)
 
-3) Livello di rischio
-L'installazione del malware può portare l' attaccante ad ottenere il controllo remoto del  computer compromesso, di conseguenza potrà utilizzare funzioni per acquisire lo schermo, eseguire comandi sul dispositivo, raccogliere informazioni sulle applicazioni installate o inserite dagli utenti negli overlay html
+2) Why it matters
 
-4) Raccomandazioni pratiche
-Formazione degli utenti sulle metodologie di phishing , monitoraggio di rete per gli IOC raccolti,nofiche NIS2 se applicabili (Art. 25) entro i tempi previsti
+The infrastructure is not dedicated to Italy; it is reused against multiple countries (as shown by the domains registered in DV digital certificates, e.g. Spanish and British domains) — so this is not an isolated event but a recurring pattern
 
-5) Livello di confidenza complessivo dell'analisi
-analisi basata su fonti primarie A1(classificazione secondo Admiralty Code) e corroborazione indipendente multi-fonte
+3) Risk level
+
+Installing the malware can give the attacker remote control of the compromised computer, who can then use functions to capture the screen, run commands on the device, and collect information about installed applications or data users enter into HTML overlays
+
+4) Practical recommendations
+
+User training on phishing techniques, network monitoring for the collected IOCs, and NIS2 notifications, where applicable (Art. 25), within the required deadlines
+
+5) Overall confidence level of the analysis
+
+Analysis based on primary A1 sources (classification per the Admiralty Code) and independent multi-source corroboration

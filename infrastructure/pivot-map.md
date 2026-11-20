@@ -1,41 +1,41 @@
-# Infrastructure Pivoting — dominio v4476.com
+# Infrastructure Pivoting — v4476.com domain
 
-## Punto di partenza
+## Starting Point
 
-Tutti gli URL e domini elencati negli IOC del CERT-AGID (Fase 2) condividono lo stesso dominio radice: **`v4476.com`**. Il pivoting OSINT parte da qui, con l'obiettivo di capire se questa infrastruttura è dedicata esclusivamente alla campagna italiana o condivisa con altri bersagli.
+All URLs and domains listed in CERT-AGID's IOCs (Phase 2) share the same root domain: **`v4476.com`**. OSINT pivoting starts here, with the goal of understanding whether this infrastructure is dedicated exclusively to the Italian campaign or shared with other targets.
 
-## Metodo
+## Method
 
-Ricerca passiva tramite **Certificate Transparency log** (Censys), nessuna visita diretta al dominio.
+Passive search via **Certificate Transparency logs** (Censys), no direct visit to the domain.
 
-Primo tentativo (fallito): query generica `names: v4476.com` — risultato rumoroso, ha trovato domini completamente estranei che contengono per coincidenza la sottostringa `4476.com` (es. `teamcity-9163-4476.com`, infrastrutture aziendali legittime senza alcuna relazione con la campagna). Lezione: una ricerca per sottostringa libera non equivale a una ricerca per sottodominio esatto.
+First attempt (failed): generic query `names: v4476.com` — noisy result, it found completely unrelated domains that coincidentally contain the substring `4476.com` (e.g. `teamcity-9163-4476.com`, legitimate corporate infrastructure with no relation to the campaign). Lesson: a free substring search is not equivalent to an exact subdomain search.
 
-Query corretta, con match esatto sul suffisso: **`cert.names: ".v4476.com"`** — 3 risultati, tutti genuinamente riferiti all'infrastruttura in esame.
+Correct query, with exact suffix match: **`cert.names: ".v4476.com"`** — 3 results, all genuinely related to the infrastructure under examination.
 
-## Risultati
+## Results
 
-| Host | Validità certificato | CA | Confidenza |
+| Host | Certificate validity | CA | Confidence |
 |---|---|---|---|
-| `panel.v4476.com` | 24/09/2026 → 23/12/2026 | Let's Encrypt (CN=YE2) | A1 — osservazione diretta da log di trasparenza dei certificati |
-| `panel.v4476.com` (cert. precedente) | 22/09/2026 → 21/12/2026 | Let's Encrypt (CN=YE1) | A1 |
-| `panel.v4476.com` (cert. precedente) | 23/09/2026 → 22/12/2026 | Let's Encrypt (CN=YE1) | A1 |
+| `panel.v4476.com` | 24/09/2026 → 23/12/2026 | Let's Encrypt (CN=YE2) | A1 — direct observation from certificate transparency logs |
+| `panel.v4476.com` (previous cert.) | 22/09/2026 → 21/12/2026 | Let's Encrypt (CN=YE1) | A1 |
+| `panel.v4476.com` (previous cert.) | 23/09/2026 → 22/12/2026 | Let's Encrypt (CN=YE1) | A1 |
 
-Validità di ~90 giorni e emissione automatizzata (Let's Encrypt) in rapida sequenza (3 certificati in meno di 48 ore) — coerente con un'infrastruttura automatizzata e "usa e getta", tipica di toolkit di phishing/malware-as-a-service.
+~90-day validity and automated issuance (Let's Encrypt) in rapid sequence (3 certificates in under 48 hours) — consistent with automated, "disposable" infrastructure, typical of phishing/malware-as-a-service toolkits.
 
-## Scoperta principale: riuso multi-paese dell'infrastruttura
+## Key Finding: Multi-Country Reuse of the Infrastructure
 
-Gli stessi certificati elencano, come **Subject Alternative Names (SAN)**, nomi host riferiti a enti di **almeno 5 paesi diversi**, oltre all'Italia:
+The same certificates list, as **Subject Alternative Names (SAN)**, hostnames referring to entities in **at least 5 different countries**, besides Italy:
 
-| Sottodominio SAN | Ente impersonato |
+| SAN subdomain | Impersonated entity |
 |---|---|
-| `salute.gov.it.v4476.com` | Ministero della Salute / SSN — Italia (campagna documentata da CERT-AGID) |
-| `health.gov.za.v4476.com` | Ministero della Sanità — Sudafrica |
-| `health.govt.nz.v4476.com` | Ministero della Sanità — Nuova Zelanda |
-| `met.police.uk.v4476.com` | Metropolitan Police — Regno Unito |
-| `ad.gob.es.v4476.com`, `ministeriosanidad.com.v4476.com` | Enti governativi/sanitari — Spagna |
-| `crypto.com.v4476.com`, `meet.google.com.v4476.com`, `google.com.v4476.com` | Brand generici ad alta fiducia (non enti pubblici) |
-| `panel.v4476.com` | Probabile pannello di controllo centrale dell'infrastruttura |
+| `salute.gov.it.v4476.com` | Ministero della Salute (Italian Ministry of Health) / SSN — Italy (campaign documented by CERT-AGID) |
+| `health.gov.za.v4476.com` | Ministry of Health — South Africa |
+| `health.govt.nz.v4476.com` | Ministry of Health — New Zealand |
+| `met.police.uk.v4476.com` | Metropolitan Police — United Kingdom |
+| `ad.gob.es.v4476.com`, `ministeriosanidad.com.v4476.com` | Government/healthcare bodies — Spain |
+| `crypto.com.v4476.com`, `meet.google.com.v4476.com`, `google.com.v4476.com` | Generic high-trust brands (not public bodies) |
+| `panel.v4476.com` | Probable central control panel of the infrastructure |
 
-**Interpretazione (confidenza: alta, A2)**: `v4476.com` non è un'infrastruttura costruita su misura per colpire l'Italia, ma una piattaforma di phishing/distribuzione malware **riutilizzabile e multi-bersaglio**, in cui il tema dell'esca (sanità, polizia, servizi generici) viene intercambiato a seconda della campagna. Questo corrobora direttamente quanto osservato da ThreatFabric sul malware StreamRat: *"gli attaccanti possono cambiare bersaglio senza modificare o ridistribuire il malware"* — qui lo stesso principio si osserva anche a livello di infrastruttura di distribuzione, non solo del malware stesso.
+**Interpretation (confidence: high, A2)**: `v4476.com` is not infrastructure built specifically to target Italy, but a **reusable, multi-target** phishing/malware-distribution platform, in which the lure theme (healthcare, police, generic services) is swapped depending on the campaign. This directly corroborates what ThreatFabric observed about the StreamRat malware: *"attackers can change targets without modifying or redistributing the malware"* — here the same principle is also observed at the level of the distribution infrastructure, not only of the malware itself.
 
-**Cautela dichiarata**: non è possibile stabilire con certezza se tutte queste istanze (Italia, Sudafrica, Nuova Zelanda, UK, Spagna) fossero attive simultaneamente o distribuite nel tempo — i tre certificati osservati sono relativi allo stesso breve periodo (settembre 2026), ma la presenza nel SAN non implica necessariamente una campagna attiva contemporanea per ciascun ente elencato.
+**Stated caveat**: it is not possible to establish with certainty whether all these instances (Italy, South Africa, New Zealand, UK, Spain) were active simultaneously or spread over time — the three observed certificates relate to the same short period (September 2026), but presence in the SAN does not necessarily imply a concurrent active campaign for each listed entity.

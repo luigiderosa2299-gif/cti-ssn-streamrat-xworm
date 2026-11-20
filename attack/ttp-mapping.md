@@ -1,19 +1,19 @@
-catena XWorm (lato Windows)
-| ID tecnica | Nome | Tattica | Comportamento | Fonte |
+XWorm chain (Windows side)
+| Technique ID | Name | Tactic | Behavior | Source |
 |---|---|---|---|---|
-| T1566.002  | Spearphishing Link | Initial Access | Il sito consegna un file .bat scaricato dalla vittima (consegna del malware tramite sito web) | CERT-AGID A1 |
-| T1027.016 | Junk Code Insertion | Stealth | Il file BAT contiene sezioni di codice "finte" (controlli hardware mai eseguiti) per confondere l'analisi — tecnica di offuscamento | CERT-AGID A1 |
-| T1059.001 | Command and Scripting Interpreter: PowerShell | Execution | Il file SSN Windows.bat avvia una seconda istanza di PowerShell con finestra nascosta per eseguire il loader successivo | CERT-AGID, A1 |
-| T1036.008 | Masquerading : Masquerade File Type | Stealth | PowerShell scarica un file 2.jpg che in realtà contiene una stringa Base64 — tecnica di occultamento del payload dentro un formato apparentemente innocuo | CERT-AGID A1 |
-| T1620 | Reflective code Loading | Stealth | Il codice Base64 decodificato viene caricato direttamente in memoria (System.Reflection.Assembly::Load()), senza mai scrivere l'eseguibile finale su disco | CERT-AGID A1 |
-| T1071 | Application Layer Protocol | Command and Control | XWorm (il RAT finale) comunica con un server di comando e controllo (C2) | CERT-AGID A1 |
+| T1566.002  | Spearphishing Link | Initial Access | The site delivers a .bat file downloaded by the victim (malware delivery via website) | CERT-AGID A1 |
+| T1027.016 | Junk Code Insertion | Stealth | The BAT file contains "fake" code sections (hardware checks that are never executed) to confuse analysis — an obfuscation technique | CERT-AGID A1 |
+| T1059.001 | Command and Scripting Interpreter: PowerShell | Execution | The SSN Windows.bat file launches a second PowerShell instance with a hidden window to run the next loader | CERT-AGID, A1 |
+| T1036.008 | Masquerading : Masquerade File Type | Stealth | PowerShell downloads a 2.jpg file that actually contains a Base64 string — a technique for hiding the payload inside an apparently harmless format | CERT-AGID A1 |
+| T1620 | Reflective code Loading | Stealth | The decoded Base64 code is loaded directly into memory (System.Reflection.Assembly::Load()), without ever writing the final executable to disk | CERT-AGID A1 |
+| T1071 | Application Layer Protocol | Command and Control | XWorm (the final RAT) communicates with a command-and-control (C2) server | CERT-AGID A1 |
 
-catena StreamRat (lato Android)
-| ID tecnica | Nome | Tattica | Comportamento | Fonte |
+StreamRat chain (Android side)
+| Technique ID | Name | Tactic | Behavior | Source |
 |---|---|---|---|---|
-| T1476 | Deliver Malicious Application via Other Means | Initial Access | Il sito propone il download di un APK che si finge l'app ufficiale SSN | CERT-AGID A1 |
-| T1406 | Obfuscated Files or Information | Defense Evasion | L'APK nasconde un secondo payload cifrato con XOR, decodificato da una libreria nativa | CERT-AGID A1 |
-| T1626 | Abuse Elevation Control Mechanism | Privilege Escalation | L'app richiede l'abilitazione dei servizi di Accessibilità di Android per ottenere controllo dell'interfaccia | CERT-AGID A1 |
-| T1417.002 | Input Capture: GUI Input Capture | Credential Access | Il malware usa overlay HTML sovrapposti alle altre app per rubare dati inseriti dall'utente | CERT-AGID A1 |
-| T1437.001 | Application Layer Protocol: Web Protocols | Command and Control | Comunicazione con il server C2 tramite WebSocket su TLS | CERT-AGID A1 |
+| T1476 | Deliver Malicious Application via Other Means | Initial Access | The site offers the download of an APK posing as the official SSN app | CERT-AGID A1 |
+| T1406 | Obfuscated Files or Information | Defense Evasion | The APK hides a second payload encrypted with XOR, decoded by a native library | CERT-AGID A1 |
+| T1626 | Abuse Elevation Control Mechanism | Privilege Escalation | The app asks the user to enable Android Accessibility services to gain control of the interface | CERT-AGID A1 |
+| T1417.002 | Input Capture: GUI Input Capture | Credential Access | The malware uses HTML overlays drawn over other apps to steal data entered by the user | CERT-AGID A1 |
+| T1437.001 | Application Layer Protocol: Web Protocols | Command and Control | Communication with the C2 server via WebSocket over TLS | CERT-AGID A1 |
  

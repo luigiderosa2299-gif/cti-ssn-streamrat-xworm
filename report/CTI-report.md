@@ -1,52 +1,52 @@
-# CTI Report — Campagna StreamRat/XWorm contro il falso sito SSN
+# CTI Report — StreamRat/XWorm Campaign Against the Fake SSN Website
 
 ## Executive Summary
 
-Vedi [`executive-summary.md`](executive-summary.md) per la sintesi non tecnica orientata alla decisione.
+See [`executive-summary.md`](executive-summary.md) for the non-technical, decision-oriented summary.
 
-## Allegato tecnico
+## Technical Annex
 
-### 1. Scenario e fonte primaria
+### 1. Scenario and Primary Source
 
-Il 24/09/2026 il CERT-AGID ha pubblicato l'analisi di una campagna malevola che sfrutta un falso sito del Servizio Sanitario Nazionale, consegnando payload diverso in base allo User-Agent del visitatore: **StreamRat** su Android, **XWorm** su Windows.
+On 24/09/2026 CERT-AGID (Italy's government CERT) published its analysis of a malicious campaign that abuses a fake Servizio Sanitario Nazionale (SSN, Italian National Health Service) website, delivering a different payload depending on the visitor's User-Agent: **StreamRat** on Android, **XWorm** on Windows.
 
-Fonte primaria: `cert-agid.gov.it/news/falso-sito-del-servizio-sanitario-nazionale-distribuisce-streamrat-su-android-e-xworm-su-windows/`
+Primary source: `cert-agid.gov.it/news/falso-sito-del-servizio-sanitario-nazionale-distribuisce-streamrat-su-android-e-xworm-su-windows/`
 
-### 2. Valutazione delle fonti (Admiralty Code)
+### 2. Source Evaluation (Admiralty Code)
 
-5 fonti valutate con metodologia Admiralty Code — fonte primaria CERT-AGID (A1 su tutte le affermazioni tecniche dirette), corroborazione indipendente da ThreatFabric (scopritore di StreamRat, A1), contesto generale da Fortinet FortiGuard Labs e da testate giornalistiche italiane (C1, corroborazione senza analisi tecnica propria).
+5 sources evaluated using the Admiralty Code — primary source CERT-AGID (A1 on all direct technical claims), independent corroboration from ThreatFabric (discoverer of StreamRat, A1), general context from Fortinet FortiGuard Labs and Italian news outlets (C1, corroboration without original technical analysis).
 
-Dettaglio completo: [`../sources/source-evaluation.md`](../sources/source-evaluation.md)
+Full details: [`../sources/source-evaluation.md`](../sources/source-evaluation.md)
 
-### 3. Indicatori di Compromissione
+### 3. Indicators of Compromise
 
-63 IOC normalizzati (9 MD5, 9 SHA1, 17 SHA256, 10 URL, 14 domini, 3 IP) a partire dai due feed IOCA pubblicati dal CERT-AGID, uniti e deduplicati via script Python.
+63 IOCs normalized (9 MD5, 9 SHA1, 17 SHA256, 10 URLs, 14 domains, 3 IPs) from the two IOCA feeds published by CERT-AGID, merged and deduplicated with a Python script.
 
-Arricchimento con VirusTotal (17/17 hash controllati) e ThreatFox (3/3 IP controllati) ha rivelato **almeno 4 famiglie/stadi distinti** nella catena d'infezione, inclusa una famiglia ("Alien", trojan bancario Android) non menzionata nell'articolo CERT-AGID originale.
+Enrichment with VirusTotal (17/17 hashes checked) and ThreatFox (3/3 IPs checked) revealed **at least 4 distinct families/stages** in the infection chain, including one family ("Alien", an Android banking trojan) not mentioned in the original CERT-AGID article.
 
-Dettaglio completo: [`../iocs/iocs.csv`](../iocs/iocs.csv), [`../iocs/ioc-enrichment.md`](../iocs/ioc-enrichment.md)
+Full details: [`../iocs/iocs.csv`](../iocs/iocs.csv), [`../iocs/ioc-enrichment.md`](../iocs/ioc-enrichment.md)
 
-### 4. Infrastruttura
+### 4. Infrastructure
 
-Pivoting OSINT passivo (Certificate Transparency via Censys) sul dominio radice `v4476.com` ha rivelato un'infrastruttura di phishing **riutilizzata contro almeno 5 paesi** (Italia, Sudafrica, Nuova Zelanda, Regno Unito, Spagna) e brand generici (Google Meet, Crypto.com) — non una campagna costruita su misura per l'Italia, ma un'istanza di un'infrastruttura di distribuzione malware commodity.
+Passive OSINT pivoting (Certificate Transparency via Censys) on the root domain `v4476.com` revealed a phishing infrastructure **reused against at least 5 countries** (Italy, South Africa, New Zealand, United Kingdom, Spain) and generic brands (Google Meet, Crypto.com) — not a campaign tailored to Italy, but an instance of commodity malware-distribution infrastructure.
 
-Dettaglio completo: [`../infrastructure/pivot-map.md`](../infrastructure/pivot-map.md)
+Full details: [`../infrastructure/pivot-map.md`](../infrastructure/pivot-map.md)
 
-### 5. Tecniche, Tattiche e Procedure (MITRE ATT&CK)
+### 5. Tactics, Techniques and Procedures (MITRE ATT&CK)
 
-11 tecniche mappate e verificate individualmente sulla fonte ufficiale (6 su matrice Enterprise/Windows per la catena XWorm, 5 su matrice Mobile/Android per la catena StreamRat), ciascuna collegata al comportamento specifico osservato e alla fonte con relativo codice Admiralty.
+11 techniques mapped and individually verified against the official source (6 on the Enterprise/Windows matrix for the XWorm chain, 5 on the Mobile/Android matrix for the StreamRat chain), each linked to the specific observed behavior and to the source with its Admiralty code.
 
-Dettaglio completo: [`../attack/ttp-mapping.md`](../attack/ttp-mapping.md) — layer ATT&CK Navigator in [`../attack/layer-enterprise.json`](../attack/layer-enterprise.json) e [`../attack/layer-mobile.json`](../attack/layer-mobile.json)
+Full details: [`../attack/ttp-mapping.md`](../attack/ttp-mapping.md) — ATT&CK Navigator layers in [`../attack/layer-enterprise.json`](../attack/layer-enterprise.json) and [`../attack/layer-mobile.json`](../attack/layer-mobile.json)
 
-### 6. Contesto normativo (NIS2)
+### 6. Regulatory Context (NIS2)
 
-Le tecniche mappate sono state collegate alle misure di gestione del rischio previste dall'Art. 24 del D.Lgs. 138/2024 (recepimento italiano della Direttiva NIS2), con le relative tempistiche di notifica al CSIRT Italia in caso di incidente significativo (24h pre-notifica, 72h notifica, 1 mese relazione finale — Art. 25).
+The mapped techniques were linked to the risk-management measures set out in Art. 24 of D.Lgs. 138/2024 (the Italian transposition of the NIS2 Directive), together with the notification timelines to CSIRT Italia (Italy's national CSIRT) in the event of a significant incident (24h early warning, 72h notification, 1 month final report — Art. 25).
 
-Dettaglio completo: [`../context/nis2-mapping.md`](../context/nis2-mapping.md)
+Full details: [`../context/nis2-mapping.md`](../context/nis2-mapping.md)
 
-## Metodologia generale
+## General Methodology
 
-- Nessuna interazione diretta con infrastruttura o campioni malevoli: pivoting esclusivamente passivo tramite servizi terzi (Censys, VirusTotal, ThreatFox)
-- Nessun campione malware scaricato o eseguito
-- Ogni affermazione tecnica tracciabile a una fonte con relativo codice Admiralty
-- Limiti e incertezze dichiarati esplicitamente in ciascun documento di dettaglio, non nascosti
+- No direct interaction with malicious infrastructure or samples: exclusively passive pivoting through third-party services (Censys, VirusTotal, ThreatFox)
+- No malware sample downloaded or executed
+- Every technical claim is traceable to a source with its Admiralty code
+- Limitations and uncertainties are stated explicitly in each detailed document, not hidden

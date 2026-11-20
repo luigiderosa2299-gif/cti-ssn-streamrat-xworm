@@ -1,39 +1,39 @@
-# Dai TTP ai requisiti NIS2 (D.Lgs. 138/2024)
+# From TTPs to NIS2 Requirements (D.Lgs. 138/2024)
 
-Metodologia: le misure NIS2 derivano direttamente dalle tecniche ATT&CK mappate nella Fase 4 (non da un'organizzazione fittizia) — per ogni tecnica, la mitigazione raccomandata da MITRE viene collegata alla categoria di misura corrispondente prevista dall'**Articolo 24** del D.Lgs. 138/2024 (recepimento italiano della Direttiva NIS2 — attenzione: la numerazione italiana **non coincide** con quella della direttiva UE, dove le misure di sicurezza sono all'Art. 21; nel decreto italiano sono all'**Art. 24**).
+Methodology: the NIS2 measures derive directly from the ATT&CK techniques mapped in Phase 4 (not from a fictitious organization) — for each technique, the mitigation recommended by MITRE is linked to the corresponding measure category set out in **Article 24** of D.Lgs. 138/2024 (the Italian transposition of the NIS2 Directive — note: the Italian numbering **does not match** that of the EU directive, where the security measures are in Art. 21; in the Italian decree they are in **Art. 24**).
 
-## Tabella TTP → Mitigazione → Misura NIS2
+## TTP → Mitigation → NIS2 Measure Table
 
-| Tecnica ATT&CK | Mitigazione (da MITRE) | Misura NIS2 Art. 24 | Confidenza collegamento |
+| ATT&CK Technique | Mitigation (from MITRE) | NIS2 Art. 24 Measure | Link Confidence |
 |---|---|---|---|
-| T1566.002 (Spearphishing Link) | User Training, Network Intrusion Prevention | Formazione e igiene informatica di base; policy di sicurezza della posta elettronica | Alta — collegamento diretto e consolidato in letteratura |
-| T1027.016 (Junk Code Insertion) | Antivirus/Antimalware comportamentale | Gestione delle vulnerabilità; rilevamento e risposta (EDR) | Media — l'offuscamento è difficile da mitigare preventivamente, serve detection comportamentale più che prevenzione |
-| T1059.001 (PowerShell) | Disable or Remove Feature or Program; Execution Prevention (AppLocker/WDAC); Logging PowerShell (ScriptBlock Logging) | Controllo degli accessi; policy di hardening dei sistemi; logging e monitoraggio | Alta — mitigazioni specifiche e ben documentate (restrizione dell'uso di PowerShell non necessario) |
-| T1036.008 (Masquerade File Type) | User Training; Restrict File and Directory Permissions | Formazione del personale; policy di sicurezza sui download/allegati | Media — mitigazione principalmente comportamentale/umana, difficile da bloccare tecnicamente al 100% |
-| T1620 (Reflective Code Loading) | Behavior Prevention on Endpoint (EDR); Restrict file and directory permissions | Gestione degli incidenti (rilevamento); soluzioni di rilevamento e risposta avanzate (EDR) | Media — tecnica difficile da prevenire, principalmente rilevabile a runtime |
-| T1071 (Application Layer Protocol) | Network Intrusion Prevention; Filtraggio/monitoraggio del traffico di rete; SSL/TLS Inspection | Monitoraggio della rete; segmentazione; gestione degli incidenti | Alta — collegamento diretto, controllo di rete è categoria esplicita in NIS2 |
-| T1476 (Deliver Malicious App via Other Means) | User Training; Restrict installazione da fonti non autorizzate (MDM) | Formazione e igiene informatica; policy di gestione dei dispositivi mobili | Alta |
-| T1406 (Obfuscated Files or Information, Mobile) | Application Vetting | Gestione del rischio della catena di approvvigionamento (se tramite app store); controllo delle applicazioni installabili | Media |
-| T1626 (Abuse Elevation Control Mechanism) | User Guidance; Use Recent OS Version | Formazione del personale; gestione delle patch/aggiornamenti | Alta — mitigazione MITRE esplicitamente di tipo formativo, coerente con Art. 24 |
-| T1417.002 (GUI Input Capture / overlay) | Use Recent OS Version (restrizioni overlay Android 12+) | Gestione delle patch; policy di gestione dei dispositivi mobili (MDM) | Media |
-| T1437.001 (Application Layer Protocol: Web Protocols, Mobile) | Network Intrusion Prevention | Monitoraggio della rete; gestione degli incidenti | Alta |
+| T1566.002 (Spearphishing Link) | User Training, Network Intrusion Prevention | Training and basic cyber hygiene; email security policy | High — direct link, well established in the literature |
+| T1027.016 (Junk Code Insertion) | Behavioral Antivirus/Antimalware | Vulnerability management; detection and response (EDR) | Medium — obfuscation is hard to mitigate preventively; it calls for behavioral detection rather than prevention |
+| T1059.001 (PowerShell) | Disable or Remove Feature or Program; Execution Prevention (AppLocker/WDAC); Logging PowerShell (ScriptBlock Logging) | Access control; system hardening policy; logging and monitoring | High — specific, well-documented mitigations (restricting unnecessary PowerShell use) |
+| T1036.008 (Masquerade File Type) | User Training; Restrict File and Directory Permissions | Staff training; download/attachment security policy | Medium — mitigation is mainly behavioral/human, difficult to block technically at 100% |
+| T1620 (Reflective Code Loading) | Behavior Prevention on Endpoint (EDR); Restrict file and directory permissions | Incident management (detection); advanced detection and response solutions (EDR) | Medium — technique hard to prevent, mainly detectable at runtime |
+| T1071 (Application Layer Protocol) | Network Intrusion Prevention; Network traffic filtering/monitoring; SSL/TLS Inspection | Network monitoring; segmentation; incident management | High — direct link, network control is an explicit category in NIS2 |
+| T1476 (Deliver Malicious App via Other Means) | User Training; Restrict installation from unauthorized sources (MDM) | Training and cyber hygiene; mobile device management policy | High |
+| T1406 (Obfuscated Files or Information, Mobile) | Application Vetting | Supply chain risk management (if via app store); control of installable applications | Medium |
+| T1626 (Abuse Elevation Control Mechanism) | User Guidance; Use Recent OS Version | Staff training; patch/update management | High — MITRE mitigation is explicitly training-oriented, consistent with Art. 24 |
+| T1417.002 (GUI Input Capture / overlay) | Use Recent OS Version (Android 12+ overlay restrictions) | Patch management; mobile device management (MDM) policy | Medium |
+| T1437.001 (Application Layer Protocol: Web Protocols, Mobile) | Network Intrusion Prevention | Network monitoring; incident management | High |
 
-## Tempistiche di notifica (Art. 25, D.Lgs. 138/2024)
+## Notification Timelines (Art. 25, D.Lgs. 138/2024)
 
-Se un dispositivo di un soggetto NIS (essenziale o importante) venisse compromesso da questa catena d'attacco (XWorm su Windows o StreamRat su Android) e l'incidente fosse classificato come **significativo** (grave perturbazione operativa, o perdite materiali/immateriali considerevoli per terzi), scatterebbero i seguenti obblighi verso il CSIRT Italia:
+If a device belonging to a NIS entity (essential or important) were compromised by this attack chain (XWorm on Windows or StreamRat on Android) and the incident were classified as **significant** (severe operational disruption, or considerable material/non-material losses for third parties), the following obligations toward CSIRT Italia (Italy's national CSIRT) would apply:
 
-1. **Entro 24 ore** dalla conoscenza dell'incidente — pre-notifica, con indicazione se l'incidente sembra derivare da atti malevoli e se ha un possibile impatto transfrontaliero
-2. **Entro 72 ore** — notifica con aggiornamento delle informazioni, valutazione iniziale di gravità/impatto, e IoC disponibili (qui entrerebbero in gioco esattamente gli IOC raccolti nella Fase 2 di questo lab)
-3. **Su richiesta del CSIRT** — relazione intermedia sugli aggiornamenti
-4. **Entro 1 mese** dalla notifica — relazione finale con descrizione dettagliata, causa, misure di attenuazione adottate
+1. **Within 24 hours** of becoming aware of the incident — early warning, indicating whether the incident appears to result from malicious acts and whether it may have a cross-border impact
+2. **Within 72 hours** — notification with updated information, initial severity/impact assessment, and available IoCs (this is exactly where the IOCs collected in Phase 2 of this lab would come into play)
+3. **Upon CSIRT request** — intermediate report on updates
+4. **Within 1 month** of the notification — final report with detailed description, cause, and mitigation measures adopted
 
-Nota: l'obbligo di notifica decorre dal 1° gennaio 2026; le notifiche volontarie (anche di minacce o quasi-incidenti, non solo incidenti significativi) sono possibili fin da subito (Art. 26).
+Note: the notification obligation applies from 1 January 2026; voluntary notifications (also of threats or near-misses, not only significant incidents) are possible immediately (Art. 26).
 
-## Perimetro di Sicurezza Nazionale Cibernetica (nota distintiva)
+## Perimetro di Sicurezza Nazionale Cibernetica (Italy's National Cybersecurity Perimeter) — Distinguishing Note
 
-Il Perimetro di Sicurezza Nazionale Cibernetica (PSNC, introdotto dal D.L. 105/2019, distinto da NIS2) è un regime normativo **separato**, rivolto esclusivamente a soggetti pubblici e privati che erogano **funzioni o servizi essenziali per lo Stato** (non tutte le aziende NIS2 rientrano nel Perimetro — è un sottoinsieme più ristretto e più critico). Una PMI generica soggetta a NIS2 non rientrerebbe automaticamente nel Perimetro, a meno di operare in settori/infrastrutture di rilevanza strategica nazionale esplicitamente individuati.
+The Perimetro di Sicurezza Nazionale Cibernetica (PSNC, Italy's National Cybersecurity Perimeter, introduced by D.L. 105/2019 and distinct from NIS2) is a **separate** regulatory regime, aimed exclusively at public and private entities that provide **functions or services essential to the State** (not all NIS2 companies fall within the Perimeter — it is a narrower, more critical subset). A generic SME subject to NIS2 would not automatically fall within the Perimeter, unless it operates in explicitly identified sectors/infrastructures of national strategic relevance.
 
-## Limiti dichiarati
+## Stated Limitations
 
-- Le misure NIS2 elencate non derivano da un elenco ufficiale e completo delle "41 misure di sicurezza" previste dalla determinazione ACN (non reperito nella ricerca OSINT condotta) — sono categorie generali citate esplicitamente nell'Art. 24 e nelle fonti secondarie consultate, non la lista tecnica completa e numerata.
-- Il collegamento "tecnica → misura" riflette un ragionamento analitico personale, non una mappatura ufficiale pubblicata da ACN o MITRE — va trattato come ipotesi di lavoro ragionevole, non come riferimento normativo certificato.
+- The NIS2 measures listed do not derive from an official, complete list of the "41 security measures" set out in the ACN (Agenzia per la Cybersicurezza Nazionale, Italy's National Cybersecurity Agency) determination (not found in the OSINT research conducted) — they are general categories explicitly cited in Art. 24 and in the secondary sources consulted, not the complete, numbered technical list.
+- The "technique → measure" link reflects personal analytical reasoning, not an official mapping published by ACN or MITRE — it should be treated as a reasonable working hypothesis, not as a certified regulatory reference.
